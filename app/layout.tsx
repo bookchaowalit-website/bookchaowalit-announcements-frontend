@@ -1,36 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Lora, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const bulletinDisplay = Lora({ variable: "--font-bulletin-display", subsets: ["latin"] });
+const bulletinSans = Work_Sans({ variable: "--font-bulletin-sans", subsets: ["latin"] });
+const bulletinMono = Work_Sans({ variable: "--font-bulletin-mono", subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Announcements | Bookchaowalit",
-  description: "Broadcast updates to visitors.",
-  keywords: ["announcements", "portfolio"],
-  authors: [{ name: "Bookchaowalit", url: "https://bookchaowalit.com" }],
-  creator: "Bookchaowalit",
-  metadataBase: new URL("https://bookchaowalit.com"),
-  openGraph: {
-    type: "website",
-    title: "Announcements | Bookchaowalit",
-    description: "Broadcast updates to visitors.",
-    siteName: "Bookchaowalit",
-  },
-  robots: { index: true, follow: true },
-};
+export const metadata: Metadata = { title: "Circular — Notice desk", description: "Compose and review local announcements.", metadataBase: new URL("https://announcements.bookchaowalit.com"), alternates: { canonical: "https://announcements.bookchaowalit.com" } };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Analytics />
-        <SpeedInsights />
-        {children}
-      </body>
-    </html>
-  );
+  return <html lang="en" className={`${bulletinDisplay.variable} ${bulletinSans.variable} ${bulletinMono.variable}`}><body><Analytics /><SpeedInsights />{children}</body></html>;
 }
